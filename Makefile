@@ -7,12 +7,14 @@ CC := gcc
 CFLAGS := `sdl2-config --libs --cflags` -ggdb3 -O0 --std=c99 -Wall -lSDL2_image -lm
 
 # add header files here
-HDRS := c_trees/inc/c_trees.h inc/search_viz.h c_trees/c_structures/inc/c_structures.h
+HDRS := c_trees/inc/c_trees.h c_trees/c_structures/inc/c_structures.h inc/search_viz.h
 
+# define main file (used for clean function, in order to build, use make MAIN=<dir>/<file>.c)
+MAIN := examples/dfs_example.c
 # add source files here
-SRCS := c_trees/src/c_trees.c c_trees/c_structures/src/s_list.c c_trees/c_structures/src/tree.c c_trees/c_structures/src/stack.c src/render.c src/convert.c src/search.c src/main.c 
+SRCS := $(wildcard c_trees/src/*.c) $(wildcard c_trees/c_structures/src/*.c) src/render.c src/convert.c src/search.c $(MAIN) 
 
-TEST_SRCS := $(filter-out src/main.c,$(SRCS)) src/test.c
+TEST_SRCS := $(filter-out $(MAIN),$(SRCS)) src/test.c
 
 # generate names of object files
 OBJS := $(SRCS:.c=.o)
