@@ -7,6 +7,7 @@ Example graph, code representation and the search tree generated:
 <div style="display:flex;width: 100%; height: 350px; gap:1rem;justify-content:center">
 <img src="img/graph1.png"/>
 </div>
+
 ```c
 // ...
 
@@ -38,7 +39,8 @@ QP_DfsSearchResults \*dfs_search_results = queen_problem_dfs(adjacency_list, 1, 
 // Call render function
 queen_problem_render_tree_nested_obj(rend, dfs_search_results->search_tree->root_nodes->head->data);
 
-````
+```
+
 <div style="display:flex;width: 100%; gap:1rem;justify-content:center">
 <img src="img/search_tree.png"/>
 </div>
@@ -47,4 +49,4 @@ queen_problem_render_tree_nested_obj(rend, dfs_search_results->search_tree->root
 ```shell
 $ make
 $ ./main
-````
+```
