@@ -44,7 +44,15 @@ queen_problem_render_tree_nested_obj(rend, dfs_search_results->search_tree->root
 <div style="display:flex;width: 100%; gap:1rem;justify-content:center">
 <img src="img/search_tree.png"/>
 </div>
-# Download and run
+
+## Run the code
+
+### Setup
+
+Before following the build section, make sure you have followed the setup process for the submodules as indicated in https://github.com/brunomariz/c_trees/blob/main/README.md#setup-linux
+
+
+### Build
 
 ```shell
 $ git clone git@github.com:brunomariz/search_viz.git
