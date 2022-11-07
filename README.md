@@ -44,9 +44,12 @@ queen_problem_render_tree_nested_obj(rend, dfs_search_results->search_tree->root
 <div style="display:flex;width: 100%; gap:1rem;justify-content:center">
 <img src="img/search_tree.png"/>
 </div>
-# Build and run
+# Download and run
 
 ```shell
+$ git clone git@github.com:brunomariz/search_viz.git
+$ cd search_viz/
+$ git submodule update --init --recursive
 $ make
 $ ./main
 ```
