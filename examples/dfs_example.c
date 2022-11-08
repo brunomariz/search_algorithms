@@ -5,22 +5,10 @@
 #include <SDL2/SDL_timer.h>
 #include <SDL2/SDL_image.h>
 #include "../c_trees/inc/c_trees.h"
-#include "../inc/search_viz.h"
+#include "../inc/search_algorithms.h"
 #include "../c_trees/c_structures/inc/c_structures.h"
 
 int event_handler(SDL_Event event);
-
-void print_list_callback(void *data, int iter)
-{
-    int *array = (int *)data;
-    printf("%d:\t[%d, %d]\n", iter, array[0], array[1]);
-}
-
-void queen_problem_print_list_callback(void *data, int iter)
-{
-    int *array = (int *)data;
-    printf("%d:\t[%d, %d]\n", iter, array[0], array[1]);
-}
 
 int main(void)
 {
@@ -87,7 +75,7 @@ int main(void)
     c_structures_s_list_append(adjacency_list, c15);
 
     // Run dfs search algorith
-    QP_DfsSearchResults *dfs_search_results = queen_problem_dfs(adjacency_list, 1, 12);
+    SA_DfsSearchResults *dfs_search_results = search_algorithms_dfs(adjacency_list, 1, 12);
 
     // animation loop
     int close_requested = 0;
@@ -101,7 +89,7 @@ int main(void)
         }
 
         // Call render function
-        queen_problem_render_tree_nested_obj(rend, dfs_search_results->search_tree->root_nodes->head->data);
+        search_algorithms_render_tree_nested_obj(rend, dfs_search_results->search_tree->root_nodes->head->data);
 
         SDL_RenderPresent(rend);
     }

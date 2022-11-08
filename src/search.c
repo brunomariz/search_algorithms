@@ -1,6 +1,6 @@
-#include "../inc/search_viz.h"
+#include "../inc/search_algorithms.h"
 
-int *queen_problem_create_array(int x1, int x2)
+int *search_algorithms_internal_create_array(int x1, int x2)
 {
     int *array = malloc(sizeof(int) * 2);
     array[0] = x1;
@@ -8,13 +8,13 @@ int *queen_problem_create_array(int x1, int x2)
     return array;
 }
 
-QP_BfsSearchResults *queen_problem_bfs(CS_SList *graph_adjacency_list, int start, int goal)
+SA_BfsSearchResults *search_algorithms_bfs(CS_SList *graph_adjacency_list, int start, int goal)
 {
     CS_SList *search_tree = c_structures_s_list_create();
     CS_SList *border = c_structures_s_list_create();
 
     // Add start item to border
-    c_structures_s_list_append(border, queen_problem_create_array(start, start));
+    c_structures_s_list_append(border, search_algorithms_internal_create_array(start, start));
 
     int *active_border_item;
 
@@ -27,7 +27,7 @@ QP_BfsSearchResults *queen_problem_bfs(CS_SList *graph_adjacency_list, int start
 
         if (active_border_item[1] == goal)
         {
-            QP_BfsSearchResults *search_results = malloc(sizeof *search_results);
+            SA_BfsSearchResults *search_results = malloc(sizeof *search_results);
             search_results->border = border;
             // Remove start item from search tree
             c_structures_s_list_remove(search_tree, 0);
@@ -46,35 +46,20 @@ QP_BfsSearchResults *queen_problem_bfs(CS_SList *graph_adjacency_list, int start
             }
             else if (connection[1] == active_border_item[1] && connection[0] != active_border_item[0])
             {
-                c_structures_s_list_append(border, queen_problem_create_array(connection[1], connection[0]));
+                c_structures_s_list_append(border, search_algorithms_internal_create_array(connection[1], connection[0]));
             }
             item = item->next;
         }
     }
 
-    QP_BfsSearchResults *bfs_search_results = malloc(sizeof *bfs_search_results);
+    SA_BfsSearchResults *bfs_search_results = malloc(sizeof *bfs_search_results);
     bfs_search_results->border = border;
     bfs_search_results->search_tree = search_tree;
     bfs_search_results->found = 0;
     return bfs_search_results;
 }
 
-void print_node_callback(void *data, int iter)
-{
-    CS_TreeNode *node = data;
-    printf("%d\tid: %d\n", iter, node->id);
-}
-void print_array_callback(void *data, int iter)
-{
-    int *array = data;
-    printf("%d\t[%d, %d]\n", iter, array[0], array[1]);
-}
-void print_int_callback(void *data, int iter)
-{
-    int *item = data;
-    printf("%d, ", *item);
-}
-int queen_problem_compare_int_callback(void *data1, void *data2)
+int search_algorithms_internal_compare_int_callback(void *data1, void *data2)
 {
     int *a = data1;
     int *b = data2;
@@ -85,8 +70,8 @@ int queen_problem_compare_int_callback(void *data1, void *data2)
     return 0;
 }
 
-QP_DfsSearchResults *
-queen_problem_dfs(CS_SList *graph_adjacency_list, int start, int goal)
+SA_DfsSearchResults *
+search_algorithms_dfs(CS_SList *graph_adjacency_list, int start, int goal)
 {
     // Create node stack and search tree
     CS_Stack *node_stack = c_structures_stack_create();
@@ -110,7 +95,7 @@ queen_problem_dfs(CS_SList *graph_adjacency_list, int start, int goal)
         // Check if node is the goal
         if (current_node->id == goal)
         {
-            QP_DfsSearchResults *dfs_result = malloc(sizeof *dfs_result);
+            SA_DfsSearchResults *dfs_result = malloc(sizeof *dfs_result);
             dfs_result->found = 1;
             dfs_result->search_tree = search_tree;
             return dfs_result;
@@ -122,7 +107,7 @@ queen_problem_dfs(CS_SList *graph_adjacency_list, int start, int goal)
         while (graph_item != NULL)
         {
             int *connection = graph_item->data;
-            QP_TreeNodeData *current_node_data = current_node->data;
+            SA_TreeNodeData *current_node_data = current_node->data;
 
             // Check if current node's parents id is equal to connection[1] or connection[0]
             int parent_eq_connection_0 = 0;
@@ -144,13 +129,13 @@ queen_problem_dfs(CS_SList *graph_adjacency_list, int start, int goal)
             int already_visited_connection_1 = 0;
             if (c_structures_s_list_index_of(visited_nodes,
                                              &connection[0],
-                                             queen_problem_compare_int_callback) != -1)
+                                             search_algorithms_internal_compare_int_callback) != -1)
             {
                 already_visited_connection_0 = 1;
             }
             if (c_structures_s_list_index_of(visited_nodes,
                                              &connection[1],
-                                             queen_problem_compare_int_callback) != -1)
+                                             search_algorithms_internal_compare_int_callback) != -1)
             {
                 already_visited_connection_1 = 1;
             }
@@ -158,7 +143,7 @@ queen_problem_dfs(CS_SList *graph_adjacency_list, int start, int goal)
             if (connection[0] == current_node->id && !parent_eq_connection_1 && !already_visited_connection_1)
             {
                 // Create data for new node
-                QP_TreeNodeData *new_node_data = malloc(sizeof *new_node_data);
+                SA_TreeNodeData *new_node_data = malloc(sizeof *new_node_data);
                 new_node_data->parent_id = current_node->id;
                 // Create new node with id of neighbor
                 CS_TreeNode *new_node = c_structures_tree_node_create(connection[1], new_node_data);
@@ -170,7 +155,7 @@ queen_problem_dfs(CS_SList *graph_adjacency_list, int start, int goal)
             else if (connection[1] == current_node->id && !parent_eq_connection_0 && !already_visited_connection_0)
             {
                 // Create data for new node
-                QP_TreeNodeData *new_node_data = malloc(sizeof *new_node_data);
+                SA_TreeNodeData *new_node_data = malloc(sizeof *new_node_data);
                 new_node_data->parent_id = current_node->id;
                 // Create new node with id of neighbor
                 CS_TreeNode *new_node = c_structures_tree_node_create(connection[0], new_node_data);
@@ -186,7 +171,7 @@ queen_problem_dfs(CS_SList *graph_adjacency_list, int start, int goal)
         }
     }
     // Set return value in case goal was not found
-    QP_DfsSearchResults *dfs_result = malloc(sizeof *dfs_result);
+    SA_DfsSearchResults *dfs_result = malloc(sizeof *dfs_result);
     dfs_result->found = 0;
     dfs_result->search_tree = search_tree;
     return dfs_result;

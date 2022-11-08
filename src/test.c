@@ -1,8 +1,8 @@
 #include "../c_trees/inc/c_trees.h"
-#include "../inc/search_viz.h"
+#include "../inc/search_algorithms.h"
 #include "../c_trees/c_structures/inc/c_structures.h"
 
-void print_list_callback(void *data, int iter)
+void test_internal_print_list_callback(void *data, int iter)
 {
     int *array = (int *)data;
     printf("%d:\t[%d, %d]\n", iter, array[0], array[1]);
@@ -28,9 +28,9 @@ int main()
     c_structures_s_list_append(adjacency_list, c7);
     c_structures_s_list_append(adjacency_list, c8);
     printf("Adjacency list (graph):\n");
-    c_structures_s_list_print(adjacency_list, print_list_callback);
+    c_structures_s_list_print(adjacency_list, test_internal_print_list_callback);
 
-    QP_DfsSearchResults *dfs_search_results = queen_problem_dfs(adjacency_list, 1, 4);
+    SA_DfsSearchResults *dfs_search_results = search_algorithms_dfs(adjacency_list, 1, 4);
     printf("Search tree:\n");
     c_structures_tree_print(dfs_search_results->search_tree);
     printf("Found: %d\n", dfs_search_results->found);

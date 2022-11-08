@@ -32,12 +32,12 @@ int c14[2] = {10, 12};
 // ...
 
 // Run dfs search algorith
-QP_DfsSearchResults \*dfs_search_results = queen_problem_dfs(adjacency_list, 1, 12);
+SA_DfsSearchResults \*dfs_search_results = search_algorithms_dfs(adjacency_list, 1, 12);
 
 // ...
 
 // Call render function
-queen_problem_render_tree_nested_obj(rend, dfs_search_results->search_tree->root_nodes->head->data);
+search_algorithms_render_tree_nested_obj(rend, dfs_search_results->search_tree->root_nodes->head->data);
 
 ```
 
@@ -50,7 +50,6 @@ queen_problem_render_tree_nested_obj(rend, dfs_search_results->search_tree->root
 ### Setup
 
 Before following the build section, make sure you have followed the setup process for the submodules as indicated in https://github.com/brunomariz/c_trees/blob/main/README.md#setup-linux
-
 
 ### Build
 

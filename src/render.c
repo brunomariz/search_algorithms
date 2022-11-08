@@ -1,4 +1,4 @@
-#include "../inc/search_viz.h"
+#include "../inc/search_algorithms.h"
 
 #include <stdio.h>
 #include <math.h>
@@ -9,7 +9,7 @@
 CT_RGBA white = {255, 255, 255, 255};
 CT_RGBA red = {255, 0, 0, 255};
 
-void queen_problem_render_polar_axis(SDL_Renderer *renderer)
+void search_algorithms_render_polar_axis(SDL_Renderer *renderer)
 {
     SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255);
     int thick_border = 0;
@@ -32,18 +32,18 @@ void queen_problem_render_polar_axis(SDL_Renderer *renderer)
     SDL_RenderDrawLine(renderer, 0, CT_WINDOW_HEIGHT / 2, CT_WINDOW_WIDTH, CT_WINDOW_HEIGHT / 2);
 }
 
-void queen_problem_render_tree_adj_list(SDL_Renderer *renderer, CT_AdjListTree tree)
+void search_algorithms_render_tree_adj_list(SDL_Renderer *renderer, CT_AdjListTree tree)
 {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(renderer);
-    queen_problem_render_polar_axis(renderer);
+    search_algorithms_render_polar_axis(renderer);
     c_trees_draw_tree_level_based_polar_adj_list(renderer, tree, 1, 0, 0, 2 * 3.1415926);
 }
 
-void queen_problem_render_tree_nested_obj(SDL_Renderer *renderer, CS_TreeNode *root_node)
+void search_algorithms_render_tree_nested_obj(SDL_Renderer *renderer, CS_TreeNode *root_node)
 {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(renderer);
-    queen_problem_render_polar_axis(renderer);
+    search_algorithms_render_polar_axis(renderer);
     c_trees_draw_tree_level_based_polar_nested_obj(renderer, root_node, 0, 0, 2 * 3.1415962);
 }

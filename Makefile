@@ -7,7 +7,7 @@ CC := gcc
 CFLAGS := `sdl2-config --libs --cflags` -ggdb3 -O0 --std=c99 -Wall -lSDL2_image -lm
 
 # add header files here
-HDRS := c_trees/inc/c_trees.h c_trees/c_structures/inc/c_structures.h inc/search_viz.h
+HDRS := c_trees/inc/c_trees.h c_trees/c_structures/inc/c_structures.h inc/search_algorithms.h
 
 # define main file (used for clean function, in order to build, use make MAIN=<dir>/<file>.c)
 MAIN := examples/dfs_example.c

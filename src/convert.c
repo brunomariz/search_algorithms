@@ -1,6 +1,6 @@
-#include "../inc/search_viz.h"
+#include "../inc/search_algorithms.h"
 
-int *queen_problem_s_list_to_int_1_2_array(CS_SList *list)
+int *search_algorithms_s_list_to_int_1_2_array(CS_SList *list)
 {
     int *array = malloc(sizeof(int) * list->length * 2);
     CS_SListItem *item = list->head;
