@@ -28,7 +28,7 @@ typedef struct
 typedef struct
 {
     int parent_id;
-} SA_TreeNodeData;
+} SA_DfsTreeNodeData;
 
 SA_BfsSearchResults *search_algorithms_bfs(CS_SList *graph_adjacency_list, int start, int goal);
 SA_DfsSearchResults *search_algorithms_dfs(CS_SList *graph_adjacency_list, int start, int goal);

@@ -107,7 +107,7 @@ search_algorithms_dfs(CS_SList *graph_adjacency_list, int start, int goal)
         while (graph_item != NULL)
         {
             int *connection = graph_item->data;
-            SA_TreeNodeData *current_node_data = current_node->data;
+            SA_DfsTreeNodeData *current_node_data = current_node->data;
 
             // Check if current node's parents id is equal to connection[1] or connection[0]
             int parent_eq_connection_0 = 0;
@@ -143,7 +143,7 @@ search_algorithms_dfs(CS_SList *graph_adjacency_list, int start, int goal)
             if (connection[0] == current_node->id && !parent_eq_connection_1 && !already_visited_connection_1)
             {
                 // Create data for new node
-                SA_TreeNodeData *new_node_data = malloc(sizeof *new_node_data);
+                SA_DfsTreeNodeData *new_node_data = malloc(sizeof *new_node_data);
                 new_node_data->parent_id = current_node->id;
                 // Create new node with id of neighbor
                 CS_TreeNode *new_node = c_structures_tree_node_create(connection[1], new_node_data);
@@ -155,7 +155,7 @@ search_algorithms_dfs(CS_SList *graph_adjacency_list, int start, int goal)
             else if (connection[1] == current_node->id && !parent_eq_connection_0 && !already_visited_connection_0)
             {
                 // Create data for new node
-                SA_TreeNodeData *new_node_data = malloc(sizeof *new_node_data);
+                SA_DfsTreeNodeData *new_node_data = malloc(sizeof *new_node_data);
                 new_node_data->parent_id = current_node->id;
                 // Create new node with id of neighbor
                 CS_TreeNode *new_node = c_structures_tree_node_create(connection[0], new_node_data);
