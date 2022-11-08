@@ -1,0 +1,23 @@
+{
+    "files.associations": {
+        "math.h": "c",
+        "sdl.h": "c",
+        "c_trees.h": "c",
+        "game_loop.h": "c",
+        "type_utils.h": "c",
+        "render.h": "c",
+        "c_structures.h": "c",
+        "stdio.h": "c",
+        "queen_problem.h": "c",
+        "limits": "c",
+        "*.tcc": "c",
+        "type_traits": "c",
+        "search_viz.h": "c",
+        "search_algorithms.h": "c",
+        "sdl_main.h": "c",
+        "sdl_stdinc.h": "c",
+        "sdl_config.h": "c",
+        "_real_sdl_config.h": "c",
+        "sdl_platform.h": "c"
+    }
+}
