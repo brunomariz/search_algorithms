@@ -14,7 +14,7 @@ MAIN := examples/dfs_example.c
 # add source files here
 SRCS := $(wildcard c_trees/src/*.c) $(wildcard c_trees/c_structures/src/*.c) src/render.c src/convert.c src/search.c $(MAIN) 
 
-TEST_SRCS := $(filter-out $(MAIN),$(SRCS)) examples/test.c
+TEST_SRCS := $(filter-out $(MAIN),$(SRCS)) tests/test.c
 
 # generate names of object files
 OBJS := $(SRCS:.c=.o)
