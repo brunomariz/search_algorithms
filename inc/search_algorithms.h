@@ -22,12 +22,13 @@ typedef struct
 typedef struct
 {
     CS_Tree *search_tree;
+    CS_SList *path;
     int found;
 } SA_DfsSearchResults;
 
 typedef struct
 {
-    int parent_id;
+    CS_TreeNode *parent_node;
 } SA_DfsTreeNodeData;
 
 SA_BfsSearchResults *search_algorithms_bfs(CS_SList *graph_adjacency_list, int start, int goal);

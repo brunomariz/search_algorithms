@@ -10,6 +10,12 @@
 
 int event_handler(SDL_Event event);
 
+void df_example_internal_print_list_callback(void *data, int iter)
+{
+    int *array = (int *)data;
+    printf("%d:\t[%d, %d]\n", iter, array[0], array[1]);
+}
+
 int main(void)
 {
     // attempt to initialize graphics and timer system
@@ -76,6 +82,10 @@ int main(void)
 
     // Run dfs search algorith
     SA_DfsSearchResults *dfs_search_results = search_algorithms_dfs(adjacency_list, 1, 12);
+
+    // Print path found
+    printf("Path:\n");
+    c_structures_s_list_print(dfs_search_results->path, df_example_internal_print_list_callback);
 
     // animation loop
     int close_requested = 0;

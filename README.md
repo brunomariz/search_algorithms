@@ -34,6 +34,10 @@ int c14[2] = {10, 12};
 // Run dfs search algorith
 SA_DfsSearchResults \*dfs_search_results = search_algorithms_dfs(adjacency_list, 1, 12);
 
+// Print path found
+printf("Path:\n");
+c_structures_s_list_print(dfs_search_results->path, df_example_internal_print_list_callback);
+
 // ...
 
 // Call render function
@@ -44,6 +48,15 @@ search_algorithms_render_tree_nested_obj(rend, dfs_search_results->search_tree->
 <div style="display:flex;width: 100%; gap:1rem;justify-content:center">
 <img src="img/search_tree.png"/>
 </div>
+
+Text output:
+
+```
+Path:
+0:      [1, 3]
+1:      [3, 10]
+2:      [10, 12]
+```
 
 ## Run the code
 

@@ -70,6 +70,27 @@ int search_algorithms_internal_compare_int_callback(void *data1, void *data2)
     return 0;
 }
 
+CS_SList *search_algorithms_internal_dfs_search_tree_get_path(CS_TreeNode *goal_node)
+{
+    /// @brief Finds the path from start to goal given the goal node from a tree in which the
+    ///        nodes have SA_DfsTreeNodeData type data
+    /// @param search_tree
+    /// @return CS_SList *path
+
+    CS_SList *path = c_structures_s_list_create();
+
+    CS_TreeNode *current_node = goal_node;
+    while (current_node->data != NULL)
+    {
+        SA_DfsTreeNodeData *current_node_data = current_node->data;
+        CS_TreeNode *parent_node = current_node_data->parent_node;
+        c_structures_stack_push(path, search_algorithms_internal_create_array(parent_node->id, current_node->id));
+        current_node = parent_node;
+    }
+
+    return path;
+}
+
 SA_DfsSearchResults *
 search_algorithms_dfs(CS_SList *graph_adjacency_list, int start, int goal)
 {
@@ -98,6 +119,7 @@ search_algorithms_dfs(CS_SList *graph_adjacency_list, int start, int goal)
             SA_DfsSearchResults *dfs_result = malloc(sizeof *dfs_result);
             dfs_result->found = 1;
             dfs_result->search_tree = search_tree;
+            dfs_result->path = search_algorithms_internal_dfs_search_tree_get_path(current_node);
             return dfs_result;
         }
 
@@ -114,11 +136,11 @@ search_algorithms_dfs(CS_SList *graph_adjacency_list, int start, int goal)
             int parent_eq_connection_1 = 0;
             if (current_node_data != NULL)
             {
-                if (current_node_data->parent_id == connection[0])
+                if (current_node_data->parent_node->id == connection[0])
                 {
                     parent_eq_connection_0 = 1;
                 }
-                if (current_node_data->parent_id == connection[1])
+                if (current_node_data->parent_node->id == connection[1])
                 {
                     parent_eq_connection_1 = 1;
                 }
@@ -144,7 +166,7 @@ search_algorithms_dfs(CS_SList *graph_adjacency_list, int start, int goal)
             {
                 // Create data for new node
                 SA_DfsTreeNodeData *new_node_data = malloc(sizeof *new_node_data);
-                new_node_data->parent_id = current_node->id;
+                new_node_data->parent_node = current_node;
                 // Create new node with id of neighbor
                 CS_TreeNode *new_node = c_structures_tree_node_create(connection[1], new_node_data);
                 // Add node to stack
@@ -156,7 +178,7 @@ search_algorithms_dfs(CS_SList *graph_adjacency_list, int start, int goal)
             {
                 // Create data for new node
                 SA_DfsTreeNodeData *new_node_data = malloc(sizeof *new_node_data);
-                new_node_data->parent_id = current_node->id;
+                new_node_data->parent_node = current_node;
                 // Create new node with id of neighbor
                 CS_TreeNode *new_node = c_structures_tree_node_create(connection[0], new_node_data);
                 // Add node to stack
@@ -174,5 +196,6 @@ search_algorithms_dfs(CS_SList *graph_adjacency_list, int start, int goal)
     SA_DfsSearchResults *dfs_result = malloc(sizeof *dfs_result);
     dfs_result->found = 0;
     dfs_result->search_tree = search_tree;
+    dfs_result->path = c_structures_s_list_create();
     return dfs_result;
 }
