@@ -32,7 +32,7 @@ int c14[2] = {10, 12};
 // ...
 
 // Run dfs search algorith
-SA_DfsSearchResults \*dfs_search_results = search_algorithms_dfs(adjacency_list, 1, 12);
+SA_DfsSearchResults *dfs_search_results = search_algorithms_dfs(adjacency_list, 1, 12);
 
 // Print path found
 printf("Path:\n");
