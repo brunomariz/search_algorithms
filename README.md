@@ -45,7 +45,7 @@ search_algorithms_render_tree_nested_obj(rend, dfs_search_results->search_tree->
 
 ```
 
-<div style="display:flex;width: 100%; gap:1rem;justify-content:center">
+<div style="display:flex;width: 100%; gap:1rem;justify-content:center;margin-bottom:1rem;">
 <img src="img/search_tree.png"/>
 </div>
 
