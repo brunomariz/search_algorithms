@@ -2,7 +2,6 @@
 #define _SEARCH_ALGORITHMS_H
 
 #include <SDL2/SDL.h>
-#include "../c_plot/inc/c_plot.h"
 #include "../c_plot/c_structures/inc/c_structures.h"
 
 // ===Search===
