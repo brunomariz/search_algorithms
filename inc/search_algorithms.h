@@ -2,15 +2,9 @@
 #define _SEARCH_ALGORITHMS_H
 
 #include <SDL2/SDL.h>
-#include "../c_trees/inc/c_trees.h"
-#include "../c_trees/c_structures/inc/c_structures.h"
+#include "../c_plot/inc/c_plot.h"
+#include "../c_plot/c_structures/inc/c_structures.h"
 
-// ===Conversion===
-int *search_algorithms_s_list_to_int_1_2_array(CS_SList *list);
-// ===Rendering===
-void search_algorithms_render_polar_axis(SDL_Renderer *renderer);
-void search_algorithms_render_tree_adj_list(SDL_Renderer *renderer, CT_AdjListTree tree);
-void search_algorithms_render_tree_nested_obj(SDL_Renderer *renderer, CS_TreeNode *root_node);
 // ===Search===
 typedef struct
 {

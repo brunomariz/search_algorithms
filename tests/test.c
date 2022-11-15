@@ -1,6 +1,6 @@
-#include "../c_trees/inc/c_trees.h"
+#include "../c_plot/inc/c_plot.h"
 #include "../inc/search_algorithms.h"
-#include "../c_trees/c_structures/inc/c_structures.h"
+#include "../c_plot/c_structures/inc/c_structures.h"
 
 void test_internal_print_list_callback(void *data, int iter)
 {
